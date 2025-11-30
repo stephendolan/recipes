@@ -31,13 +31,10 @@ ln -s ~/repos/recipes ~/Library/Mobile\ Documents/iCloud~org~cooklang~CooklangAp
 ```
 recipes/
 ├── Breakfast/
-├── Lunch/
 ├── Dinner/
 ├── Desserts/
 ├── Sides/
 ├── Sauces/
-├── Drinks/
-├── Basics/
 ├── config/
 │   └── aisle.conf      # Shopping list organization
 ├── bin/
