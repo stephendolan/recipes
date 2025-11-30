@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:cooklang.org)",
+      "WebFetch(domain:cooklang.github.io)"
+    ]
+  }
+}
