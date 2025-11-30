@@ -4,7 +4,7 @@ allowed-tools: WebFetch, Read, Write, Glob
 argument-hint: "<url> [category]"
 ---
 
-Fetch recipe from URL and convert to Cooklang format.
+Import recipe from URL and convert to Cooklang format.
 
 **Arguments:** $ARGUMENTS
 

@@ -1,6 +1,6 @@
 ---
 description: "Generate a shopping list from one or more recipes"
-allowed-tools: Glob, Read, Grep
+allowed-tools: Glob, Read, Grep, Bash
 argument-hint: "[recipe-names or 'all']"
 ---
 

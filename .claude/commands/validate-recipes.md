@@ -1,6 +1,6 @@
 ---
 description: "Validate all Cooklang recipes for syntax errors and best practices"
-allowed-tools: Glob, Read, Grep
+allowed-tools: Glob, Read, Grep, Bash
 ---
 
 Find all `.cook` files and validate:

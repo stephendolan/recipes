@@ -47,6 +47,16 @@ Add prep instructions in parentheses:
 | `-` | Hidden from shopping list | `-@salt{to taste}` |
 | `?` | Optional ingredient | `?@nuts{1%cup}` |
 | `&` | Reference earlier quantity | `@&flour{100%g}` |
+| `&(=N)` | Reference from section N | `@&(=1)sauce{}` |
+
+### Timer Formats
+
+```
+~{15%minutes}           -- exact time
+~{2-3%minutes}          -- time range
+~{30%seconds}           -- short durations
+~resting{10%minutes}    -- named timer
+```
 
 ## Recipe Structure
 
@@ -120,6 +130,7 @@ Personal tips with `>`:
 | 1/2 cup butter, softened | `@butter{1/2%cup}(softened)` |
 | medium saucepan | `#saucepan{medium}` |
 | cook for 20 minutes | `cook for ~{20%minutes}` |
+| cook 2-3 minutes | `cook ~{2-3%minutes}` |
 
 ## Quality Checklist
 
