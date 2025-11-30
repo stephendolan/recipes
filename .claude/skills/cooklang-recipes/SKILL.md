@@ -4,6 +4,45 @@ description: "Write and edit Cooklang recipe files. Use when creating, editing, 
 
 # Cooklang Recipe Writing
 
+## Cook CLI
+
+The `cook` command-line tool manages recipes. Key commands:
+
+| Command | Purpose |
+|---------|---------|
+| `cook recipe "<path>"` | Parse and display a recipe |
+| `cook recipe "<path>:2"` | Scale recipe by factor |
+| `cook shopping-list <files>` | Generate shopping list |
+| `cook doctor validate` | Check all recipes for errors |
+| `cook doctor aisle` | Find ingredients missing from aisle.conf |
+| `cook server` | Browse recipes in web interface |
+| `cook search "<term>"` | Search recipes |
+
+### Recipe Display
+
+```bash
+cook recipe "Dinner/Pasta.cook"           # display recipe
+cook recipe "Dinner/Pasta.cook:2"         # double the quantities
+cook recipe "Dinner/Pasta.cook" -f json   # output as JSON
+cook recipe "Dinner/Pasta.cook" -f markdown  # output as Markdown
+```
+
+### Shopping Lists
+
+```bash
+cook shopping-list "Dinner/Pasta.cook"                    # single recipe
+cook shopping-list "Dinner/Pasta.cook" "Dinner/Soup.cook" # multiple
+cook shopping-list "Dinner/Pasta.cook:2"                  # scaled
+cook shopping-list */*.cook                               # all recipes
+```
+
+### Validation
+
+```bash
+cook doctor validate   # syntax errors and warnings
+cook doctor aisle      # missing aisle.conf entries
+```
+
 ## Core Syntax
 
 ### Markers
@@ -46,14 +85,13 @@ Add prep instructions in parentheses:
 |----------|---------|---------|
 | `-` | Hidden from shopping list | `-@salt{to taste}` |
 | `?` | Optional ingredient | `?@nuts{1%cup}` |
-| `&` | Reference earlier quantity | `@&flour{100%g}` |
-| `&(=N)` | Reference from section N | `@&(=1)sauce{}` |
+| `&` | Reference earlier ingredient | `&flour` |
 
 ### Timer Formats
 
 ```
 ~{15%minutes}           -- exact time
-~{2-3%minutes}          -- time range
+~{2%minutes} to ~{3%minutes}  -- time range (preferred)
 ~{30%seconds}           -- short durations
 ~resting{10%minutes}    -- named timer
 ```
@@ -74,7 +112,9 @@ difficulty: easy
 ---
 ```
 
-Keys: `title`, `servings`, `source`, `author`, `prep time`, `cook time`, `tags`, `cuisine`, `difficulty`, `diet`
+Required: `servings` (must be a number, not "4 servings")
+
+Optional: `source`, `author`, `prep time`, `cook time`, `tags`, `cuisine`, `difficulty`
 
 ### Steps
 
@@ -90,7 +130,7 @@ Bake for ~{25%minutes} until golden.
 
 ### Sections
 
-For complex recipes with multiple parts:
+For complex recipes with multiple parts, use `=`:
 
 ```
 = Sauce
@@ -99,7 +139,7 @@ Mix @soy sauce{3%tbsp} with @honey{1%tbsp}.
 
 = Stir Fry
 
-Cook @chicken{1%lb} in @oil{2%tbsp}.
+Cook @chicken{1%lb} in -@oil{2%tbsp}.
 ```
 
 ### Notes
@@ -114,7 +154,7 @@ Personal tips with `>`:
 ### Comments
 
 ```
--- Single line comment
+-- Single line comment (not shown in output)
 
 [- Multi-line
    comment block -]
@@ -130,7 +170,7 @@ Personal tips with `>`:
 | 1/2 cup butter, softened | `@butter{1/2%cup}(softened)` |
 | medium saucepan | `#saucepan{medium}` |
 | cook for 20 minutes | `cook for ~{20%minutes}` |
-| cook 2-3 minutes | `cook ~{2-3%minutes}` |
+| cook 2-3 minutes | `cook ~{2%minutes} to ~{3%minutes}` |
 
 ## Quality Checklist
 
@@ -139,8 +179,10 @@ Personal tips with `>`:
 - [ ] Quantities include units where applicable
 - [ ] Cookware marked with `#`
 - [ ] Timers added for cooking steps
-- [ ] Metadata includes servings
+- [ ] Servings is a number (not "4 servings")
 - [ ] Steps separated by blank lines
+- [ ] Section headers use `=` not `>>`
+- [ ] Pantry staples use `-@`
 - [ ] Source credited if adapted
 
 ## File Organization
@@ -148,24 +190,29 @@ Personal tips with `>`:
 - Filename becomes recipe title in apps
 - Use Title Case: `Chocolate Chip Cookies.cook`
 - Place in category folder: `Desserts/Chocolate Chip Cookies.cook`
-- Images in `images/` subfolder with matching name
+- Categories: Breakfast, Lunch, Dinner, Sides, Sauces, Desserts, Drinks, Basics
 
 ## Aisle Configuration
 
-`config/aisle.conf` organizes shopping lists:
+`config/aisle.conf` organizes shopping lists by store section:
 
 ```
 [produce]
-garlic
-onion|onions|yellow onion
-bell pepper|peppers
+garlic|garlic clove|garlic cloves
+onion|onions|yellow onion|red onion
+bell pepper|peppers|green bell pepper|red bell pepper
 
 [dairy]
-butter|unsalted butter
-eggs|egg|large eggs
+butter|unsalted butter|salted butter
+eggs|egg|large eggs|egg whites
+
+[pantry]
+flour|all-purpose flour|bread flour
 ```
 
 Use `|` for synonyms that map to the same item.
+
+Run `cook doctor aisle` after adding recipes to find missing entries.
 
 ## Resources
 

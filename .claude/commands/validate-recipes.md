@@ -1,11 +1,13 @@
 ---
 description: "Validate all Cooklang recipes for syntax errors and best practices"
-allowed-tools: Glob, Read, Grep, Bash
+allowed-tools: Bash
 ---
 
-Find all `.cook` files and validate:
-- Syntax: proper `@ingredient{}`, `#cookware{}`, `~{timer}` format
-- Metadata: YAML frontmatter with servings
-- Best practices: steps separated, ingredients marked, timers included
+Run the cook CLI validation commands:
 
-Report issues by category with suggested fixes.
+```bash
+cook doctor validate
+cook doctor aisle
+```
+
+Report any warnings or errors found. For validation issues, show the file and line. For aisle issues, suggest additions to `config/aisle.conf`.

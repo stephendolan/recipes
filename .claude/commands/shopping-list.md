@@ -1,11 +1,25 @@
 ---
 description: "Generate a shopping list from one or more recipes"
-allowed-tools: Glob, Read, Grep, Bash
+allowed-tools: Bash, Glob
 argument-hint: "[recipe-names or 'all']"
 ---
 
-Generate consolidated shopping list from specified recipes (or all if no args).
+Generate shopping list using the cook CLI.
 
 **Arguments:** $ARGUMENTS
 
-Extract `@ingredient{quantity%unit}` patterns, skip `-@hidden`, consolidate quantities. Organize by `config/aisle.conf` sections if present. Output as markdown checklist with optional ingredients grouped separately.
+## Usage
+
+For specific recipes, find the .cook file paths and run:
+```bash
+cook shopping-list "Category/Recipe Name.cook" "Category/Other Recipe.cook"
+```
+
+For all recipes:
+```bash
+cook shopping-list *.cook */*.cook
+```
+
+Scaling: append `:N` to scale (e.g., `"Dinner/Pasta.cook:2"` for double).
+
+The output organizes ingredients by aisle sections from `config/aisle.conf`.
