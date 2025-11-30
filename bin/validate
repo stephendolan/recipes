@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+echo "Validating recipes..."
+
+if ! command -v cook &> /dev/null; then
+    echo "Error: cook CLI not found. Install from https://github.com/cooklang/cookcli"
+    exit 1
+fi
+
+errors=0
+
+echo "Running cook doctor validate..."
+if ! cook doctor validate; then
+    errors=1
+fi
+
+echo ""
+echo "Running cook doctor aisle..."
+if ! cook doctor aisle 2>&1 | grep -q "All ingredients are present"; then
+    echo "Warning: Some ingredients missing from aisle.conf"
+    cook doctor aisle
+fi
+
+if [ $errors -ne 0 ]; then
+    echo ""
+    echo "Validation failed. Please fix the errors above."
+    exit 1
+fi
+
+echo ""
+echo "All recipes valid!"

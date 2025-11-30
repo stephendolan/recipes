@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Only validate if .cook files are staged
+if git diff --cached --name-only | grep -q '\.cook$\|aisle\.conf$'; then
+    echo "Recipe files changed, validating..."
+
+    if ! command -v cook &> /dev/null; then
+        echo "Warning: cook CLI not found, skipping validation"
+        exit 0
+    fi
+
+    # Run validation
+    if ! cook doctor validate 2>&1 | tail -5; then
+        echo "Recipe validation failed. Fix errors before committing."
+        exit 1
+    fi
+fi

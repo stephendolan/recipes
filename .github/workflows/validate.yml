@@ -1,0 +1,29 @@
+name: Validate Recipes
+
+on:
+  push:
+    paths:
+      - '**.cook'
+      - 'config/aisle.conf'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    paths:
+      - '**.cook'
+      - 'config/aisle.conf'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install cook CLI
+        run: |
+          curl -L https://github.com/cooklang/cookcli/releases/latest/download/cookcli-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv cook /usr/local/bin/
+
+      - name: Validate recipes
+        run: cook doctor validate
+
+      - name: Check aisle configuration
+        run: cook doctor aisle
