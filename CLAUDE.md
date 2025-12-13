@@ -63,3 +63,65 @@ For complete syntax reference, use the `cooklang-recipes` skill.
 | **Sides** | Accompaniments to main dishes |
 | **Breakfast/Lunch/Dinner** | Primary meal categorization |
 | **Desserts/Drinks** | Self-explanatory |
+
+## Family Context
+
+- **Family size**: 3 (two adults born 1992/1993, one child born 2022)
+- **Default servings**: Scale recipes for a family of three
+- **Cooking style**: Seasonal, whole-food ingredients, minimally processed
+- **Garden**: Home garden in Georgia (Zone 7b) — add seasonal produce as optional extras when appropriate
+- **Eggs**: Fresh eggs from backyard chickens (stored at room temperature)
+- **Dietary note**: Avoid pork unless explicitly requested
+
+## Kitchen Equipment
+
+### Cooking Appliances
+
+- Four-burner induction stovetop
+- Instant Pot (pressure cooker)
+- Ninja flip toaster oven and air fryer (prefer over full oven to avoid preheat time)
+- Full-size oven (use only when necessary)
+- Waffle maker
+- Dehydrator
+
+### Small Appliances
+
+- Immersion blender
+- Vitamix blender
+- Small and large food processor
+- Hand mixer (no stand mixer)
+- Espresso machine (Rancilio Silvia)
+
+### Pots and Pans (Hexclad)
+
+- Small, medium, and large sauté pans
+- Large soup pot
+- Small and medium saucepans
+- Large wok
+- Small carbon steel sauté pan
+
+## Ingredient Preferences
+
+### Substitutions (always apply)
+
+| Avoid | Use Instead |
+|-------|-------------|
+| Seed oils (vegetable, canola, etc.) | Olive oil or coconut oil |
+| Refined sugar | Honey, maple syrup, or coconut sugar |
+| Alternative milks (oat, almond) | Organic dairy milk |
+
+### General Guidelines
+
+- Prioritize fresh, seasonal produce
+- Avoid unnecessary additives or pre-made sauces
+- Focus on whole foods and natural ingredients
+- Use grams for solid measurements (for kitchen scale)
+- Use imperial measurements for liquids
+
+## Recipe Style Guidelines
+
+- Keep recipes simple and practical for weeknight cooking
+- Make dishes appealing to both adults and young children
+- Include meal-prep tips or leftover ideas when relevant
+- Suggest seasonal garden additions as optional ingredients
+- Avoid overly complex or time-intensive preparations unless requested
