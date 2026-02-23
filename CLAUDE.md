@@ -44,14 +44,36 @@ For complete syntax reference, use the `cooklang-recipes` skill.
 
 ### Syntax Rules
 
-- Section headers use `= Section Name` (not `>>`)
+- Section headers use `= Section Name` (not `#`, `##`, or `>>`)
 - Ingredients must have `{}` even when empty: `-@salt{}` not `-@salt`
 - Time ranges: `~{2%minutes} to ~{3%minutes}` (not `~{2-3%minutes}`)
+- Comments use `-- text` (not markdown `Notes:` sections)
+
+### Ingredient Format
+
+The `%` separates quantity from unit. Preparation goes in a second `{}` block.
+
+```
+@ingredient{quantity%unit}{preparation}
+```
+
+Correct examples:
+- `@black beans{1%lb}{dry, rinsed}` — quantity: 1, unit: lb, prep: dry, rinsed
+- `@garlic{5%cloves}{smashed}` — quantity: 5, unit: cloves, prep: smashed
+- `@fire-roasted tomatoes{14%oz}{diced}` — use hyphens for compound names
+- `@broth{4%cups}` — no preparation needed
+- `-@salt{}` — hidden pantry staple, no quantity
+- `?@sour cream{1%dollop}` — optional, note the `?@` prefix
+
+Common mistakes:
+- `@garlic{5-6|cloves smashed}` — WRONG: `|` is not valid, use `%` for unit and `{}` for prep
+- `@beans{1 lb}` — WRONG: missing `%` between quantity and unit
+- `?sour cream{dollop}` — WRONG: missing `@` after `?`
 
 ### Modifier Usage
 
 - `-@ingredient{}`: Pantry staples (salt, pepper, cooking oil, water)
-- `?@ingredient{}`: Garnishes and truly optional additions
+- `?@ingredient{}`: Garnishes and truly optional additions (must include `@`)
 - `&ingredient`: Reference earlier ingredient in recipe
 
 ### Category Guidelines
